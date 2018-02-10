@@ -2,8 +2,10 @@
     Projects
 </h3>
 
-<button type="button" class="btn btn-primary pull-right" (click)="openModal(addProjectTemplate)">Add project</button>
-<ng-template #addProjectTemplate>
+<a routerLink="/add">
+    <button type="button" class="btn btn-primary pull-right" (click)="openModal(addProjectTemplate)">Add project</button>
+</a>
+    <ng-template #addProjectTemplate>
     <div class="modal-header">
         <h4 class="modal-title pull-left">Add project</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
