@@ -1,0 +1,40 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <p>Project</p>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="society">Name:</label>
+            <div class="col-sm-9">
+                <input type="text" *ngIf="detail !== undefined" [(ngModel)]="detail.name" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="society">Case Definition:</label>
+            <div class="col-sm-9">
+                <textarea type="text" *ngIf="detail !== undefined" [(ngModel)]="detail.caseDefinition" class="form-control" rows="3">
+                </textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="society">Alert Threshold:</label>
+            <div class="col-sm-9">
+                <input type="number" *ngIf="detail !== undefined" [(ngModel)]="detail.threshold" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="society">Key Message:</label>
+            <div class="col-sm-9">
+                <input type="text" *ngIf="detail !== undefined" [(ngModel)]="detail.keyMessage" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="society">Key Action:</label>
+            <div class="col-sm-9">
+                <input type="text" *ngIf="detail !== undefined" [(ngModel)]="detail.keyAction" class="form-control">
+            </div>
+        </div>
+    </div>
+</div>
+
+<button (click)="updateHealthRisk()" type="submit" class="btn btn-primary pull-right" disabled>Update</button>

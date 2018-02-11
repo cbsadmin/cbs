@@ -12,4 +12,8 @@ export class HealthRiskService {
     getList(): Observable<Array<HealthRisk>> {
         return this.apiService.get('/api/healthrisk');
     }
+
+    getDetails(id): Observable<HealthRisk> {
+        return this.apiService.get(`/api/healthrisk/${id}`);
+    }
 }
