@@ -114,6 +114,7 @@ export class ProjectEditComponent implements OnInit {
         project.dataOwnerId = this.selectedOwner;
         project.nationalSocietyId = this.selectedSociety;
         project.surveillanceContext = this.selectedSurveillanceOptionId;
+        project.healthRisks = this.project.healthRisks;
 
         await this.projectService.updateProject(project);
     }

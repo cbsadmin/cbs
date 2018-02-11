@@ -58,6 +58,19 @@ namespace Web
         [HttpPut("{id}")]
         public void Put(Guid id, [FromBody] UpdateProject command)
         {
+            var mappedHealthRisks = new List<ProjectHealthRiskThresholdUpdate>();
+
+            foreach (var item in command.HealthRisks)
+            {
+                mappedHealthRisks.Add(new ProjectHealthRiskThresholdUpdate
+                {
+                    Name = item.Name,
+                    HealthRiskId = item.Id,
+                    ProjectId = item.ProjectId,
+                    Threshold = item.Threshold
+                });
+            }
+
             Apply(id, new ProjectUpdated
             {
                 Id = command.Id = id,
@@ -65,7 +78,8 @@ namespace Web
                 NationalSocietyId = command.NationalSocietyId,
                 DataOwnerId = command.DataOwnerId,
                 SurveillanceContext = command.SurveillanceContext,
-                SMSGateWay = command.SMSGateWay
+                SMSGateWay = command.SMSGateWay,
+                HealthRisks = mappedHealthRisks
             });
         }
 

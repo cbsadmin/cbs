@@ -7,7 +7,6 @@ import { AddProject, Project, UpdateProject } from '../shared/models';
 
 @Injectable()
 export class ProjectService {
-
     constructor(private apiService: ApiService, private http: HttpClient) { }
 
     saveProject(item: AddProject) {

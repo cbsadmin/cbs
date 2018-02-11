@@ -4,9 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using Events;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Read.NationalSocietyFeatures;
 using Read.UserFeatures;
 
@@ -22,8 +19,7 @@ namespace Read.ProjectFeatures
 
         public NationalSociety NationalSociety { get; set; }
 
-        [JsonConverter(typeof(StringEnumConverter))]
-        public ProjectSurveillanceContext SurveillanceContext { get; set; }
+        public string SurveillanceContext { get; set; }
 
         public ProjectHealthRisk[] HealthRisks { get; set; }
 

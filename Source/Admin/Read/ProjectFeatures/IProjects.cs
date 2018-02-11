@@ -18,6 +18,7 @@ namespace Read.ProjectFeatures
         IEnumerable<Project> GetAll();
 
         Task<IEnumerable<Project>> GetAllASync();
+        
         void Delete(Guid id);
     }
 }

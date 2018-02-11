@@ -196,8 +196,7 @@ namespace Web
                     Name = title,
                     NationalSocietyId = _nationalSocietyIds[i % _nationalSocietyIds.Length],
                     DataOwnerId = _userIds[i % _userIds.Length],
-                    SurveillanceContext = (ProjectSurveillanceContext) r.Next(0,
-                        Enum.GetValues(typeof(ProjectSurveillanceContext)).Length - 1)
+                    SurveillanceContext = "Manual"
                 });
 
                 i++;

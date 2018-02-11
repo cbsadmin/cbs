@@ -20,7 +20,6 @@ namespace Domain
 
         public Guid DataOwnerId { get; set; }
 
-        [JsonConverter(typeof(StringEnumConverter))]
-        public ProjectSurveillanceContext SurveillanceContext { get; set; }
+        public string SurveillanceContext { get; set; }
     }
 }

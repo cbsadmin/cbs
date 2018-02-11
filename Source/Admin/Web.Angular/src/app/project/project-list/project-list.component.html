@@ -17,9 +17,9 @@
             <td>{{ project.name }}</td>
             <td>{{ project.nationalSociety?.name }}</td>
             <td>{{ project.dataOwner?.firstname }} {{ project.dataOwner?.lastname }}</td>
-            <td>{{ project.surveillanceContex }}</td>
+            <td>{{ project.surveillanceContext }}</td>
             <td>
-                <a>Edit</a>
+                <a [routerLink]="['/project', project.id, 'edit']">Edit</a>
             </td>
         </tr>
     </tbody>

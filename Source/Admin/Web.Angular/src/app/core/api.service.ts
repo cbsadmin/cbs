@@ -29,13 +29,14 @@ export class ApiService {
     }
 
     put(path: string, body: Object = {}) {
+        console.log(body);
         return this.http.put(`${environment.api}${path}`, JSON.stringify(body), { headers: this.setHeaders() })
         .subscribe(
             res => {
                 console.log(res);
             },
             err => {
-                console.log("Error occured" + err);
+                console.log("Error occured: " + JSON.stringify(err));
             }
         );
     }

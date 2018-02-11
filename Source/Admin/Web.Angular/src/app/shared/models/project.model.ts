@@ -24,4 +24,5 @@ export class UpdateProject {
     dataOwnerId: string;
     surveillanceContext: string;
     smsGateway: string;
+    healthRisks: HealthRisk[];
 }

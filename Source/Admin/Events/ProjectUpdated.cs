@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
+using System.Collections.Generic;
 using doLittle.Events;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -20,9 +21,10 @@ namespace Events
 
         public Guid DataOwnerId { get; set; }
 
-        [JsonConverter(typeof(StringEnumConverter))]
-        public ProjectSurveillanceContext SurveillanceContext { get; set; }
+        public string SurveillanceContext { get; set; }
 
         public string SMSGateWay { get; set; }
+
+        public List<ProjectHealthRiskThresholdUpdate> HealthRisks { get; set; }
     }
 }

@@ -40,17 +40,32 @@ namespace Read.ProjectFeatures
                 Name = @event.Name,
                 SurveillanceContext = @event.SurveillanceContext
             };
+
             _projects.Save(project);
         }
 
         public void Process(ProjectUpdated @event)
         {
+            var mappedHealthRisks = new List<ProjectHealthRisk>();
+
+            foreach (var item in @event.HealthRisks)
+            {
+                mappedHealthRisks.Add(new ProjectHealthRisk
+                {
+                    Name = item.Name,
+                    Id = item.HealthRiskId,
+                    Threshold = item.Threshold
+                });
+            }
+
             var project = _projects.GetById(@event.Id);
             project.NationalSociety = _nationalSocieties.GetById(@event.NationalSocietyId);
             project.DataOwner = _users.GetById(@event.DataOwnerId);
             project.Name = @event.Name;
             project.SurveillanceContext = @event.SurveillanceContext;
             project.SMSGateWay = @event.SMSGateWay;
+            project.HealthRisks = mappedHealthRisks.ToArray();
+
             _projects.Save(project);
         }
 

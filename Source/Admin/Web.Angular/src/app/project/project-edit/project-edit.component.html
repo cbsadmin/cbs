@@ -60,6 +60,7 @@
                     </fieldset>
                 </div>
             </div>
+            
             <button (click)="updateProject()" type="submit" class="btn btn-primary pull-right">Update</button>
         </form>
     </div>
@@ -96,7 +97,7 @@
                             <span class="input-group-addon">
                                 <i class="fa fa-heartbeat" aria-hidden="true"></i>
                             </span>
-                            <input type="text" [(ngModel)]="caseDefinition" class="form-control" id="case-definition" required>
+                            <input type="text" [(ngModel)]="caseDefinition" class="form-control" id="case-definition" disabled>
                         </div>
                     </div>
                 </div>

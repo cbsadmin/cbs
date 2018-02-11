@@ -4,20 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 
 using System;
-using doLittle.Events;
 
-namespace Events
+namespace Domain
 {
-    public class ProjectCreated : IEvent
+    public class UpdateHealthRisk
     {
         public Guid Id { get; set; }
 
+        public Guid ProjectId { get; set; }
+
         public string Name { get; set; }
 
-        public Guid NationalSocietyId { get; set; }
-
-        public Guid DataOwnerId { get; set; }
-
-        public string SurveillanceContext { get; set; }
+        public int Threshold { get; set; }
     }
 }
