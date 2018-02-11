@@ -22,4 +22,12 @@ export class ProjectService {
         return this.apiService
             .get('/api/project');
     }
+
+    getProject(id): Observable<Project> {
+        return this.apiService.get(`/api/project/${id}`);
+    }
+
+    updateProject(input) {
+        this.apiService.put(`/api/project/${input.id}`, input);
+    }
 }

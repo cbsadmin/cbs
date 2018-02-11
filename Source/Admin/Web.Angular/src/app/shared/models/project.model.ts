@@ -5,5 +5,5 @@ export class Project {
     id: string;
     name: string;
     nationalSociety: NationalSociety;
-    projectOwner: User;
+    dataOwner: User;
 }
