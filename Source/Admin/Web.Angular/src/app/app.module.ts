@@ -8,6 +8,7 @@ import { ProjectModule } from './project/project.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { ModalModule } from 'ngx-bootstrap';
+import { HealthRiskModule } from './health-risk/health-risk.module';
 
 const routes: Routes = [
     {
@@ -29,6 +30,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot(routes, { useHash:
         CoreModule,
         rootRouting,
         ProjectModule,
+        HealthRiskModule,
         ModalModule.forRoot()
     ],
     bootstrap: [AppComponent]

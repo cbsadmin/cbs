@@ -1,0 +1,26 @@
+<h3>
+    Health Risks
+</h3>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Definition</th>
+            <th>Threshold</th>
+            <th>Key Message</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of healthRisks">
+            <td>{{ item.name }}</td>
+            <td>{{ item.definition }}</td>
+            <td>{{ item.threshold }}</td>
+            <td>{{ item.keyMessage }}</td>
+            <td>
+                <a [routerLink]="['/health-risk', item.id, 'edit']">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
