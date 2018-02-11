@@ -1,9 +1,8 @@
 <h1>{{ project?.name }}</h1>
 
 <div class="panel panel-default">
-    <div class="panel-heading">Panel Heading</div>
+    <div class="panel-heading">Project information</div>
     <div class="panel-body">
-
         <div class="form-group">
             <label class="control-label col-sm-3" for="society">National society:</label>
             <div class="col-sm-9">
@@ -72,11 +71,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr *ngFor="let item of project?.healthRisks">
                         <td>
-                            <select>
-                                <option>xx</option>
-                            </select>
                         </td>
                         <td>
                             <select>
@@ -84,9 +80,7 @@
                             </select>
                         </td>
                         <td>
-                            <select>
-                                <option>xx</option>
-                            </select>
+                            text
                         </td>
                     </tr>
                 </tbody>

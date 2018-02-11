@@ -7,6 +7,7 @@ import { NationalSocietyService } from './nationalsociety.service';
 import { ProjectService } from './project.service';
 import { UserService } from './user.service';
 import { UtilityService } from './utility.service';
+import { HealthRiskService } from '.';
 
 @NgModule({
     imports: [
@@ -14,9 +15,10 @@ import { UtilityService } from './utility.service';
     ],
     providers: [
         ApiService,
+        HealthRiskService,
+        NationalSocietyService,
         ProjectService,
         UtilityService,
-        NationalSocietyService,
         UserService
     ],
     declarations: []

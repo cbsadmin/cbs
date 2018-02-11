@@ -1,5 +1,4 @@
-import { NationalSociety } from './index';
-import { User } from './user.model';
+import { NationalSociety, HealthRisk, User } from './index';
 
 export class Project {
     id: string;
@@ -7,6 +6,7 @@ export class Project {
     nationalSociety: NationalSociety;
     dataOwner: User;
     surveillanceContext: string;
+    healthRisks: HealthRisk[];
 }
 
 export class AddProject {

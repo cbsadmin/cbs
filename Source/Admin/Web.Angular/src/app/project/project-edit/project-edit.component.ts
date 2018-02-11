@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProjectService, UserService, NationalSocietyService } from '../../core/';
-import { NationalSociety, User, Project, UpdateProject } from '../../shared/models/index';
+import { ProjectService, UserService, NationalSocietyService, HealthRiskService } from '../../core/';
+import { NationalSociety, User, Project, UpdateProject, HealthRisk } from '../../shared/models/index';
 
 @Component({
     selector: 'cbs-project-edit',
@@ -10,6 +10,7 @@ import { NationalSociety, User, Project, UpdateProject } from '../../shared/mode
 })
 
 export class ProjectEditComponent implements OnInit {
+    healthRisks: HealthRisk[];
     surveillanceOptions: { "id": string; "name": string; }[];
     projectOwners: User[];
     societies: NationalSociety[];
@@ -22,7 +23,9 @@ export class ProjectEditComponent implements OnInit {
     constructor(private route: ActivatedRoute,
         private projectService: ProjectService,
         private userService: UserService,
-        private nationalSocietyService: NationalSocietyService) { }
+        private nationalSocietyService: NationalSocietyService,
+        private healthRiskService: HealthRiskService
+    ) { }
 
     ngOnInit() {
         this.route.params.subscribe(params => {
@@ -81,7 +84,17 @@ export class ProjectEditComponent implements OnInit {
         this.userService.getProjectOwners(nationalSocietyId).subscribe(
             (users) => {
                 this.projectOwners = users;
-                console.log(nationalSocietyId);
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
+    }
+
+    getHealthRisks() {
+        this.healthRiskService.getList().subscribe(
+            (result) => {
+                this.healthRisks = result;
             },
             (error) => {
                 console.error(error);
