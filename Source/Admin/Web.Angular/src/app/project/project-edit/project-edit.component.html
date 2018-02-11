@@ -9,10 +9,12 @@
             <div class="form-group">
                 <label class="control-label col-sm-3" for="society">National society:</label>
                 <div class="col-sm-9">
-                    <div class="input-group"><span class="input-group-addon">
-                        <i class="fa fa-globe" aria-hidden="true"></i></span>
-                        <select id="society" class="form-control" [(ngModel)]="selectedSociety"
-                                (change)="onSocietyChange(selectedSociety)" name="society" required>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-globe" aria-hidden="true"></i>
+                        </span>
+                        <select id="society" class="form-control" [(ngModel)]="selectedSociety" (change)="onSocietyChange(selectedSociety)" name="society"
+                            required>
                             <option *ngFor="let society of societies" [value]="society.id">{{society.name}}</option>
                         </select>
                     </div>
@@ -21,11 +23,12 @@
             <div class="form-group">
                 <label class="control-label col-sm-3" for="owner">Project / data owner:</label>
                 <div class="col-sm-9">
-                    <div class="input-group"><span class="input-group-addon">
-                        <i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                        </span>
                         <select id="owner" class="form-control" [(ngModel)]="selectedOwner" name="owner" required>
-                            <option *ngFor="let owner of projectOwners" [value]="owner.id">{{owner.firstname}}
-                                {{owner.lastname}} / {{owner.country}}
+                            <option *ngFor="let owner of projectOwners" [value]="owner.id">{{owner.firstname}} {{owner.lastname}} / {{owner.country}}
                             </option>
                         </select>
                     </div>
@@ -36,20 +39,21 @@
                 <div class="col-sm-9">
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <i class="fa fa-heartbeat" aria-hidden="true"></i></span>
-                        <input type="text" [(ngModel)]="name" class="form-control" id="project" required>
+                            <i class="fa fa-heartbeat" aria-hidden="true"></i>
+                        </span>
+                        <input type="text" [(ngModel)]="project.name" *ngIf="project !== undefined" name="project.name" class="form-control" id="project" required>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <p class="control-label col-sm-3 font-weight-bold"><strong>Surveillance context:</strong></p>
+                <p class="control-label col-sm-3 font-weight-bold">
+                    <strong>Surveillance context:</strong>
+                </p>
                 <div class="col-sm-9">
                     <fieldset id="surveillance" class="input-group">
                         <div *ngFor="let option of surveillanceOptions" class="radio-inline">
                             <label class="radio-inline">
-                                <input type="radio" name="surveillance" [value]="option.id"
-                                       [(ngModel)]="selectedSurveillanceOptionId" required>
-                                {{ option.name }}
+                                <input type="radio" name="surveillance" [value]="option.id" [(ngModel)]="selectedSurveillanceOptionId" required> {{ option.name }}
                             </label>
                         </div>
                     </fieldset>
@@ -71,9 +75,9 @@
                     <div class="col-sm-8">
                         <div class="input-group">
                             <span class="input-group-addon">
-                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
-                            <select id="health-risk" class="form-control" [(ngModel)]="selectedHealthRisk"
-                                    name="health-risk" required>
+                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                            </span>
+                            <select id="health-risk" class="form-control" [(ngModel)]="selectedHealthRisk" name="health-risk" required>
                                 <option *ngFor="let risk of healthRisks" [value]="risk.id">{{risk.name}}</option>
                             </select>
                         </div>
@@ -86,7 +90,8 @@
                     <div class="col-sm-8">
                         <div class="input-group">
                             <span class="input-group-addon">
-                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                            </span>
                             <select id="threshold" class="form-control" [(ngModel)]="selectedThreshold" name="health-risk" required>
                                 <option *ngFor="let threshold of thresholds" [value]="threshold.id">{{threshold.name}}</option>
                             </select>
@@ -99,7 +104,9 @@
                     <label class="control-label col-sm-4" for="case-definition">Case Definition:</label>
                     <div class="col-sm-8">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-heartbeat" aria-hidden="true"></i></span>
+                            <span class="input-group-addon">
+                                <i class="fa fa-heartbeat" aria-hidden="true"></i>
+                            </span>
                             <input type="text" [(ngModel)]="caseDefinition" class="form-control" id="case-definition" required>
                         </div>
                     </div>
