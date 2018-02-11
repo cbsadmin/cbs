@@ -1,11 +1,19 @@
-<h1>{{ project?.name }}</h1>
+<div class="row">
+    <div class="">
+    <h1>{{ project?.name }}</h1>
+    <div class="pull-right">
+        <button class="btn btn-primary">Export / Print </button>
+        <button (click)="updateProject()" type="submit" class="btn btn-primary pull-right">Save</button>
+    </div>
+    </div>
+</div>
 
+<form class="form-horizontal">
 <div class="panel panel-default">
     <div class="panel-heading">
         <p>Project</p>
     </div>
     <div class="panel-body">
-        <form class="form-horizontal">
             <div class="form-group">
                 <label class="control-label col-sm-3" for="society">National society:</label>
                 <div class="col-sm-9">
@@ -38,11 +46,8 @@
                 <label class="control-label col-sm-3" for="project">Name of project:</label>
                 <div class="col-sm-9">
                     <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="fa fa-heartbeat" aria-hidden="true"></i>
-                        </span>
-                        <input type="text" [(ngModel)]="project.name" *ngIf="project !== undefined" name="project.name" class="form-control" id="project"
-                            required>
+                        <span class="input-group-addon"><i class="fa fa-heartbeat" aria-hidden="true"></i></span>
+                        <input type="text" [(ngModel)]="project.name" *ngIf="project !== undefined" name="project.name" class="form-control" id="project" required>
                     </div>
                 </div>
             </div>
@@ -60,8 +65,6 @@
                     </fieldset>
                 </div>
             </div>
-            <button (click)="updateProject()" type="submit" class="btn btn-primary pull-right">Update</button>
-        </form>
     </div>
 </div>
 <div class="panel panel-default">
@@ -69,34 +72,196 @@
         <p>Health risk</p>
     </div>
     <div class="panel-body">
-        <div class="row" *ngFor="let item of project?.healthRisks">
+        <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="health-risk">Health risk:</label>
-                    <div class="col-sm-8">
-                        <select id="health-risk" class="form-control" name="health-risk" required [(ngModel)]="item.id">
-                            <option *ngFor="let risk of healthRisks" [value]="risk.id">{{risk.name}}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label class="control-label col-sm-4" for="threshold">Threshold:</label>
-                    <div class="col-sm-8">
-                        <input type="number" [(ngModel)]="item.threshold">
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label class="control-label col-sm-4" for="case-definition">Case Definition:</label>
+                    <label class="control-label col-sm-4" for="health-risk1">Health risk:</label>
                     <div class="col-sm-8">
                         <div class="input-group">
                             <span class="input-group-addon">
-                                <i class="fa fa-heartbeat" aria-hidden="true"></i>
-                            </span>
-                            <input type="text" [(ngModel)]="caseDefinition" class="form-control" id="case-definition" required>
+                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+                            <select id="health-risk1" class="form-control" name="health-risk" required [(ngModel)]="item.id">
+                                <option *ngFor="let risk of healthRisks" [value]="risk.id">{{risk.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="threshold1">Threshold:</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-info" aria-hidden="true"></i></span>
+                            <input type="number" [(ngModel)]="item.threshold" id="threshold1" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="case-definition1">Case Definition:</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-info" aria-hidden="true"></i></span>
+                            <input type="text" [(ngModel)]="caseDefinition" class="form-control" id="case-definition1" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="health-risk2">Health risk:</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+                            <select id="health-risk2" class="form-control" name="health-risk" required [(ngModel)]="item.id">
+                                <option *ngFor="let risk of healthRisks" [value]="risk.id">{{risk.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="threshold2">Threshold:</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-info" aria-hidden="true"></i></span>
+                            <input type="number" [(ngModel)]="item.threshold" id="threshold2" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="case-definition2">Case Definition:</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-info" aria-hidden="true"></i></span>
+                            <input type="text" [(ngModel)]="caseDefinition" class="form-control" id="case-definition2" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="health-risk3">Health risk:</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+                            <select id="health-risk3" class="form-control" name="health-risk" required [(ngModel)]="item.id">
+                                <option *ngFor="let risk of healthRisks" [value]="risk.id">{{risk.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="threshold3">Threshold:</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-info" aria-hidden="true"></i></span>
+                            <input type="number" [(ngModel)]="item.threshold" id="threshold3" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="case-definition3">Case Definition:</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-info" aria-hidden="true"></i></span>
+                            <input type="text" [(ngModel)]="caseDefinition" class="form-control" id="case-definition3" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="health-risk4">Health risk:</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+                            <select id="health-risk4" class="form-control" name="health-risk" required [(ngModel)]="item.id">
+                                <option *ngFor="let risk of healthRisks" [value]="risk.id">{{risk.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="threshold4">Threshold:</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-info" aria-hidden="true"></i></span>
+                            <input type="number" [(ngModel)]="item.threshold" id="threshold4" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="case-definition4">Case Definition:</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-info" aria-hidden="true"></i></span>
+                            <input type="text" [(ngModel)]="caseDefinition" class="form-control" id="case-definition4" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="health-risk5">Health risk:</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+                            <select id="health-risk5" class="form-control" name="health-risk" required [(ngModel)]="item.id">
+                                <option *ngFor="let risk of healthRisks" [value]="risk.id">{{risk.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="threshold5">Threshold:</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-info" aria-hidden="true"></i></span>
+                            <input type="number" [(ngModel)]="item.threshold" id="threshold5" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="case-definition5">Case Definition:</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-info" aria-hidden="true"></i></span>
+                            <input type="text" [(ngModel)]="caseDefinition" class="form-control" id="case-definition5" required>
                         </div>
                     </div>
                 </div>
@@ -109,7 +274,6 @@
         <p>Data verifier </p>
     </div>
     <div class="panel-body">
-
     </div>
 </div>
 <div class="panel panel-default">
@@ -120,3 +284,4 @@
 
     </div>
 </div>
+</form>
