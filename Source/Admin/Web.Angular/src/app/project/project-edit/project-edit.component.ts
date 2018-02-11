@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService, UserService, NationalSocietyService } from '../../core/';
-import { NationalSociety, User, Project } from '../../shared/models/index';
+import { NationalSociety, User, Project, UpdateProject } from '../../shared/models/index';
 
 @Component({
     selector: 'cbs-project-edit',
@@ -39,8 +39,14 @@ export class ProjectEditComponent implements OnInit {
         this.projectService.getProject(this.projectId).subscribe(
             (result) => {
                 this.project = result;
-                this.selectedSociety = result.nationalSociety.id,
-                this.selectedOwner = result.dataOwner.id
+
+                if (result.nationalSociety !== null) {
+                    this.selectedSociety = result.nationalSociety.id;
+                }
+
+                if (result.dataOwner !== null) {
+                    this.selectedOwner = result.dataOwner.id;
+                }
             },
             (error) => {
                 console.error(error);
@@ -52,7 +58,9 @@ export class ProjectEditComponent implements OnInit {
         this.nationalSocietyService.getNationalSocieties().subscribe(
             (result) => {
                 this.societies = result;
-                this.getProjectOwners(this.selectedSociety);
+
+                if(this.selectedSociety !== undefined)
+                    this.getProjectOwners(this.selectedSociety);
             },
             (error) => {
                 console.error(error);
@@ -71,12 +79,13 @@ export class ProjectEditComponent implements OnInit {
             }
         );
     }
-    
+
     async updateProject() {
-        let project = new Project();
+        let project = new UpdateProject();
         project.name = this.project.name;
         project.id = this.projectId;
-        project.dataOwner.id = this.selectedOwner;
+        project.dataOwnerId = this.selectedOwner;
+        project.nationalSocietyId = this.selectedSociety;
 
         await this.projectService.updateProject(project);
     }

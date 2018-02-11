@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { AddProject } from '../shared/models/add-project.model';
-
 @Injectable()
 export class UtilityService {
 

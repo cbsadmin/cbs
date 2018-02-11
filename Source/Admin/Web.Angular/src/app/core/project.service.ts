@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { ApiService } from './api.service';
-import { AddProject } from '../shared/models/add-project.model';
-import { Project } from '../shared/models/project.model';
 import { HttpClient } from '@angular/common/http';
+import { AddProject, Project, UpdateProject } from '../shared/models';
 
 @Injectable()
 export class ProjectService {
@@ -27,7 +26,7 @@ export class ProjectService {
         return this.apiService.get(`/api/project/${id}`);
     }
 
-    updateProject(input) {
+    updateProject(input: UpdateProject) {
         this.apiService.put(`/api/project/${input.id}`, input);
     }
 }

@@ -32,7 +32,7 @@
             <span class="input-group-addon">
                 <i class="fa fa-heartbeat" aria-hidden="true"></i>
             </span>
-            <input type="text" [(ngModel)]="name" class="form-control">
+            <input type="text" *ngIf="project !== undefined" [(ngModel)]="project.name" class="form-control">
         </div>
     </div>
 </div>
