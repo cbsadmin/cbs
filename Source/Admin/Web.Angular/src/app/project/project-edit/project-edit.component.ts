@@ -37,9 +37,10 @@ export class ProjectEditComponent implements OnInit {
             { "id": 'AggregateReports', "name": "Aggregated Reports" },
             { "id": 'SingleAndAggregateReports', "name": "Both" }
         ];
-        
+
         this.getProject();
         this.getNationalSocieties();
+        this.getHealthRisks();
     }
 
     onSocietyChange(selectedNationalSocietyId: string) {
@@ -51,7 +52,7 @@ export class ProjectEditComponent implements OnInit {
             (result) => {
                 this.project = result;
                 this.selectedSurveillanceOptionId = result.surveillanceContext;
-                
+
                 if (result.nationalSociety !== null) {
                     this.selectedSociety = result.nationalSociety.id;
                 }
@@ -71,7 +72,7 @@ export class ProjectEditComponent implements OnInit {
             (result) => {
                 this.societies = result;
 
-                if(this.selectedSociety !== undefined)
+                if (this.selectedSociety !== undefined)
                     this.getProjectOwners(this.selectedSociety);
             },
             (error) => {
@@ -102,7 +103,7 @@ export class ProjectEditComponent implements OnInit {
         );
     }
 
-    getSurveillanceOptionId(id: string){
+    getSurveillanceOptionId(id: string) {
         this.selectedSurveillanceOptionId = id;
     }
 

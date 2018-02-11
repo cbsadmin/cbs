@@ -41,7 +41,8 @@
                         <span class="input-group-addon">
                             <i class="fa fa-heartbeat" aria-hidden="true"></i>
                         </span>
-                        <input type="text" [(ngModel)]="project.name" *ngIf="project !== undefined" name="project.name" class="form-control" id="project" required>
+                        <input type="text" [(ngModel)]="project.name" *ngIf="project !== undefined" name="project.name" class="form-control" id="project"
+                            required>
                     </div>
                 </div>
             </div>
@@ -68,19 +69,14 @@
         <p>Health risk</p>
     </div>
     <div class="panel-body">
-        <div class="row">
+        <div class="row" *ngFor="let item of project?.healthRisks">
             <div class="col-sm-4">
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="health-risk">Health risk:</label>
                     <div class="col-sm-8">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                            </span>
-                            <select id="health-risk" class="form-control" [(ngModel)]="selectedHealthRisk" name="health-risk" required>
-                                <option *ngFor="let risk of healthRisks" [value]="risk.id">{{risk.name}}</option>
-                            </select>
-                        </div>
+                        <select id="health-risk" class="form-control" name="health-risk" required [(ngModel)]="item.id">
+                            <option *ngFor="let risk of healthRisks" [value]="risk.id">{{risk.name}}</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -88,14 +84,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="threshold">Threshold:</label>
                     <div class="col-sm-8">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                            </span>
-                            <select id="threshold" class="form-control" [(ngModel)]="selectedThreshold" name="health-risk" required>
-                                <option *ngFor="let threshold of thresholds" [value]="threshold.id">{{threshold.name}}</option>
-                            </select>
-                        </div>
+                        <input type="number" [(ngModel)]="item.threshold">
                     </div>
                 </div>
             </div>
