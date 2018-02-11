@@ -64,7 +64,8 @@ namespace Web
                 Name = command.Name,
                 NationalSocietyId = command.NationalSocietyId,
                 DataOwnerId = command.DataOwnerId,
-                SurveillanceContext = command.SurveillanceContext
+                SurveillanceContext = command.SurveillanceContext,
+                SMSGateWay = command.SMSGateWay
             });
         }
 
