@@ -10,12 +10,14 @@ import { NationalSociety, User, Project, UpdateProject } from '../../shared/mode
 })
 
 export class ProjectEditComponent implements OnInit {
+    surveillanceOptions: { "id": string; "name": string; }[];
     projectOwners: User[];
     societies: NationalSociety[];
     project: Project;
     projectId: string;
     selectedSociety: string;
     selectedOwner: string;
+    selectedSurveillanceOptionId: string;
 
     constructor(private route: ActivatedRoute,
         private projectService: ProjectService,
@@ -27,6 +29,12 @@ export class ProjectEditComponent implements OnInit {
             this.projectId = params.id;
         });
 
+        this.surveillanceOptions = [
+            { "id": '0', "name": "Single Reports" },
+            { "id": '1', "name": "Aggregated Reports" },
+            { "id": '2', "name": "Both" }
+        ];
+        
         this.getProject();
         this.getNationalSocieties();
     }
@@ -39,7 +47,8 @@ export class ProjectEditComponent implements OnInit {
         this.projectService.getProject(this.projectId).subscribe(
             (result) => {
                 this.project = result;
-
+                this.selectedSurveillanceOptionId = result.surveillanceContext;
+                
                 if (result.nationalSociety !== null) {
                     this.selectedSociety = result.nationalSociety.id;
                 }
@@ -80,12 +89,17 @@ export class ProjectEditComponent implements OnInit {
         );
     }
 
+    getSurveillanceOptionId(id: string){
+        this.selectedSurveillanceOptionId = id;
+    }
+
     async updateProject() {
         let project = new UpdateProject();
         project.name = this.project.name;
         project.id = this.projectId;
         project.dataOwnerId = this.selectedOwner;
         project.nationalSocietyId = this.selectedSociety;
+        project.surveillanceContext = this.selectedSurveillanceOptionId;
 
         await this.projectService.updateProject(project);
     }

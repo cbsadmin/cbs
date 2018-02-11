@@ -33,12 +33,12 @@ export class AddProjectComponent implements OnInit {
     ngOnInit() {
         this.nationalSocietyService.getNationalSocieties()
             .subscribe((result) => this.societies = result,
-            (error) => { console.log(error) });
+                (error) => { console.log(error) });
         this.surveillanceOptions = [
-                { "id": '0', "name": "Single Reports" },
-                { "id": '1', "name": "Aggregated Reports" },
-                { "id": '2', "name": "Both" }
-            ];
+            { "id": 'SingleReports', "name": "Single Reports" },
+            { "id": 'AggregateReports', "name": "Aggregated Reports" },
+            { "id": 'SingleAndAggregateReports', "name": "Both" }
+        ];
     }
 
     onSocietyChange(selectedNationalSocietyId: string) {
@@ -56,7 +56,7 @@ export class AddProjectComponent implements OnInit {
         );
     }
 
-    getSurveillanceOptionId(id: string){
+    getSurveillanceOptionId(id: string) {
         this.selectedSurveillanceOptionId = id;
     }
 

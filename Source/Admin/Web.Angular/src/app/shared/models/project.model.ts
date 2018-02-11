@@ -6,6 +6,7 @@ export class Project {
     name: string;
     nationalSociety: NationalSociety;
     dataOwner: User;
+    surveillanceContext: string;
 }
 
 export class AddProject {

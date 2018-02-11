@@ -28,25 +28,28 @@ export class ApiService {
             .catch(this.formatErrors);
     }
 
-    put(path: string, body: Object = {}): Observable<any> {
-        return this.http.put(
-            `${environment.api}${path}`,
-            JSON.stringify(body),
-            { headers: this.setHeaders() }
-        )
-            .catch(this.formatErrors);
-    }
-
-    post(path, body) {
-        return this.http
-            .post(`${environment.api}${path}`, JSON.stringify(body), { headers: this.setHeaders() })
-            .subscribe(
+    put(path: string, body: Object = {}) {
+        return this.http.put(`${environment.api}${path}`, JSON.stringify(body), { headers: this.setHeaders() })
+        .subscribe(
             res => {
                 console.log(res);
             },
             err => {
                 console.log("Error occured" + err);
             }
+        );
+    }
+
+    post(path, body) {
+        return this.http
+            .post(`${environment.api}${path}`, JSON.stringify(body), { headers: this.setHeaders() })
+            .subscribe(
+                res => {
+                    console.log(res);
+                },
+                err => {
+                    console.log("Error occured" + err);
+                }
             );
     }
 
