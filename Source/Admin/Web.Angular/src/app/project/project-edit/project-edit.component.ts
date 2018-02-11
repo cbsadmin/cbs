@@ -30,9 +30,9 @@ export class ProjectEditComponent implements OnInit {
         });
 
         this.surveillanceOptions = [
-            { "id": '0', "name": "Single Reports" },
-            { "id": '1', "name": "Aggregated Reports" },
-            { "id": '2', "name": "Both" }
+            { "id": 'SingleReports', "name": "Single Reports" },
+            { "id": 'AggregateReports', "name": "Aggregated Reports" },
+            { "id": 'SingleAndAggregateReports', "name": "Both" }
         ];
         
         this.getProject();
