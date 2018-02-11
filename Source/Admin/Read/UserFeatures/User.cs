@@ -16,6 +16,7 @@ namespace Read.UserFeatures
         public string Lastname { get; set; }
 
         public string Country { get; set; }
+
         public Guid NationalSocietyId { get; set; }
     }
 }

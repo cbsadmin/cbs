@@ -66,7 +66,7 @@ namespace Read.ProjectFeatures
             {
                 new ProjectHealthRisk
                 {
-                    HealthRiskId = @event.HealthRiskId,
+                    Id = @event.HealthRiskId,
                     Threshold = @event.Threshold
                 }
             }.ToArray();
@@ -76,7 +76,7 @@ namespace Read.ProjectFeatures
         public void Process(ProjectHealthRiskThresholdUpdate @event)
         {
             var project = _projects.GetById(@event.ProjectId);
-            var healthRisk = project.HealthRisks?.FirstOrDefault(v => v.HealthRiskId == @event.HealthRiskId);
+            var healthRisk = project.HealthRisks?.FirstOrDefault(v => v.Id == @event.HealthRiskId);
 
             if (healthRisk == null)
             {
@@ -85,7 +85,8 @@ namespace Read.ProjectFeatures
                     .ToArray();
             }
 
-            healthRisk.HealthRiskId = @event.HealthRiskId;
+            healthRisk.Name = @event.Name;
+            healthRisk.Id = @event.HealthRiskId;
             healthRisk.Threshold = @event.Threshold;
             _projects.Save(project);
 

@@ -11,7 +11,11 @@ namespace Events
     public class ProjectHealthRiskThresholdUpdate : IEvent
     {
         public Guid ProjectId { get; set; }
+
         public Guid HealthRiskId { get; set; }
+
+        public string Name { get; set; }
+
         public int Threshold { get; set; }
     }
 }

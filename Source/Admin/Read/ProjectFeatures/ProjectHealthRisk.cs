@@ -9,7 +9,10 @@ namespace Read.ProjectFeatures
 {
     public class ProjectHealthRisk
     {
-        public Guid HealthRiskId { get; set; }
+        public Guid Id { get; set; }
+        
+        public string Name { get; set; }
+
         public int Threshold { get; set; }
     }
 }

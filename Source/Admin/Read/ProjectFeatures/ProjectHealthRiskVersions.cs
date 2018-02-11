@@ -35,7 +35,7 @@ namespace Read.ProjectFeatures
         {
             var projectFilter = Builders<ProjectHealthRiskVersion>.Filter.Eq(v => v.ProjectId, projectId);
             var healthRiskFilter =
-                Builders<ProjectHealthRiskVersion>.Filter.Eq(v => v.HealthRisk.HealthRiskId, healthRiskId);
+                Builders<ProjectHealthRiskVersion>.Filter.Eq(v => v.HealthRisk.Id, healthRiskId);
             var filter = Builders<ProjectHealthRiskVersion>.Filter.And(projectFilter, healthRiskFilter);
             return _collection.Find(filter).ToEnumerable();
         }

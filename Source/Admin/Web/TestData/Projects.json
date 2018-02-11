@@ -9,7 +9,7 @@
     {
         "Id": "9aed38c4-ab58-4ac0-9cd9-7aac1e4deb6f",
         "Name": "Hurricane Matthew - Emergency Appeal Operations n° MDRHT013, 6-month Operations Update",
-        "ationalSocietyId": "a79b64be-9fae-4b22-8560-2950b8092adf",
+        "NationalSocietyId": "a79b64be-9fae-4b22-8560-2950b8092adf",
         "DataOwnerId": "c50dcc5e-5c04-455d-a3e3-d8aaefeafe8b",
         "SurveillanceContex": "SingleAndAggregateReports"
     },

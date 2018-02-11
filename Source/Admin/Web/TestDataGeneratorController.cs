@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using Events;
 using Events.External;
 using Infrastructure.AspNet;
@@ -22,16 +23,16 @@ namespace Web
     [Route("api/testdatagenerator")]
     public class TestDataGeneratorController : BaseController
     {
-        private IMongoDatabase _database;
+        private readonly IMongoDatabase _database;
 
-        private Guid[] _nationalSocietyIds = new Guid[]
+        private readonly Guid[] _nationalSocietyIds =
         {
             new Guid("917b98f2-1435-4b0d-88f1-f177a926e374"), new Guid("e13b1996-11a5-4d55-a04c-0cc1962cb0a9"),
             new Guid("267f83bf-fbe0-4fa7-a356-15fe478348b8"), new Guid("099a5bae-c8cd-472c-9a98-dc15c770598c"),
             new Guid("4405540c-78bc-4484-ae06-e00be468770c"), new Guid("53a5712c-663a-41f8-bbb1-bc4fd834646e")
         };
 
-        private Guid[] _userIds = new Guid[]
+        private readonly Guid[] _userIds =
         {
             new Guid("917b98f2-1435-4b0d-88f1-f177a926e374"), new Guid("e13b1996-11a5-4d55-a04c-0cc1962cb0a9"),
             new Guid("267f83bf-fbe0-4fa7-a356-15fe478348b8"), new Guid("099a5bae-c8cd-472c-9a98-dc15c770598c"),
@@ -67,14 +68,17 @@ namespace Web
             {
                 var healthRiskIds = new List<Guid>();
                 var randomizer = new Random();
+
                 for (var i = 0; i < 5; i++)
                 {
-                    var availableRisks = risks.Where(v => !healthRiskIds.Contains(v.Id));
+                    var availableRisks = risks.Where(v => !healthRiskIds.Contains(v.Id)).ToList();
                     var risk = availableRisks.Skip(randomizer.Next(availableRisks.Count())).First();
-                    Apply(Guid.NewGuid(), new ProjectHealthRiskThresholdUpdate()
+
+                    Apply(Guid.NewGuid(), new ProjectHealthRiskThresholdUpdate
                     {
                         ProjectId = project.Id,
                         HealthRiskId = risk.Id,
+                        Name = risk.Name.Trim(),
                         Threshold = risk.Threshold ?? 1
                     });
                 }
@@ -84,11 +88,12 @@ namespace Web
         [HttpGet("projects")]
         public void CreateProjects()
         {
-            var _collection = _database.GetCollection<Project>("Project");
-            _collection.DeleteMany(v => true);
+            var collection = _database.GetCollection<Project>("Project");
+            collection.DeleteMany(v => true);
 
             var projects =
                 JsonConvert.DeserializeObject<ProjectCreated[]>(System.IO.File.ReadAllText("./TestData/Projects.json"));
+
             foreach (var project in projects)
                 Apply(project.Id, project);
         }
@@ -96,8 +101,8 @@ namespace Web
         [HttpGet("nationalsocieties")]
         public void CreateNationalSociety()
         {
-            var _collection = _database.GetCollection<NationalSociety>("NationalSociety");
-            _collection.DeleteMany(v => true);
+            var collection = _database.GetCollection<NationalSociety>("NationalSociety");
+            collection.DeleteMany(v => true);
 
             var societies =
                 JsonConvert.DeserializeObject<NationalSocietyCreated[]>(
@@ -109,8 +114,8 @@ namespace Web
         [HttpGet("users")]
         public void CreateUsers()
         {
-            var _collection = _database.GetCollection<User>("Users");
-            _collection.DeleteMany(v => true);
+            var collection = _database.GetCollection<User>("Users");
+            collection.DeleteMany(v => true);
 
             var societies =
                 JsonConvert.DeserializeObject<NationalSocietyCreated[]>(
@@ -122,7 +127,7 @@ namespace Web
             foreach (var user in users)
             {
                 // Make sure we have a valid National Society ID
-                if (!societies.Any(v => v.Id == user.NationalSocietyId))
+                if (societies.All(v => v.Id != user.NationalSocietyId))
                     user.NationalSocietyId = societies[i++ % societies.Length].Id;
 
                 Apply(user.Id, user);
@@ -132,8 +137,8 @@ namespace Web
         [HttpGet("createhealthrisks")]
         public void CreateHealthRisks()
         {
-            var _collection = _database.GetCollection<NationalSociety>("HealthRisk");
-            _collection.DeleteMany(v => true);
+            var collection = _database.GetCollection<NationalSociety>("HealthRisk");
+            collection.DeleteMany(v => true);
 
             var risks = JsonConvert.DeserializeObject<HealthRiskCreated[]>(
                 System.IO.File.ReadAllText("./TestData/HealthRisks.json"));
@@ -151,7 +156,7 @@ namespace Web
                 (columnNames, values) =>
                 {
                     var threshold = values[Array.IndexOf(columnNames, "Threshold")];
-                    return new HealthRiskCreated()
+                    return new HealthRiskCreated
                     {
                         Id = Guid.NewGuid(),
                         ReadableId = int.Parse(values[Array.IndexOf(columnNames, "UID")]),
@@ -173,7 +178,7 @@ namespace Web
         {
             var list = new List<ProjectCreated>();
 
-            var client = new System.Net.WebClient();
+            var client = new WebClient();
             var jsonString =
                 client.DownloadString(
                     "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Freliefweb.int%2Fupdates%2Frss.xml%3Fsource%3D1242%26theme%3D4591.4604.4602");
@@ -185,7 +190,7 @@ namespace Web
                 var title = item.SelectToken("title").ToString();
                 title = title.Split(':').Select(v => v.Trim()).Last();
 
-                list.Add(new ProjectCreated()
+                list.Add(new ProjectCreated
                 {
                     Id = Guid.NewGuid(),
                     Name = title,
@@ -207,6 +212,7 @@ namespace Web
             var lines = System.IO.File.ReadAllLines(inputFilePath);
             var columnNames = lines.First().Split(separator);
             var list = new List<T>();
+
             foreach (var line in lines.Skip(1))
             {
                 var values = line.Split(separator);

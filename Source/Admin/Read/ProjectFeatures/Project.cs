@@ -17,7 +17,9 @@ namespace Read.ProjectFeatures
         public Guid Id { get; set; }
 
         public string Name { get; set; }
+
         public User DataOwner { get; set; }
+
         public NationalSociety NationalSociety { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
@@ -26,6 +28,7 @@ namespace Read.ProjectFeatures
         public ProjectHealthRisk[] HealthRisks { get; set; }
 
         public User[] DataVerifiers { get; set; }
+
         public string SMSGateWay { get; set; }
     }
 }

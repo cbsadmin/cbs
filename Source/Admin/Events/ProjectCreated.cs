@@ -15,7 +15,9 @@ namespace Events
         public Guid Id { get; set; }
 
         public string Name { get; set; }
+
         public Guid NationalSocietyId { get; set; }
+
         public Guid DataOwnerId { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]

@@ -46,12 +46,12 @@ namespace Web
                 return Ok(
                     healthRisks.Where(healthRisk =>
                             project.HealthRisks.Any(
-                                projectHealthRisk => projectHealthRisk.HealthRiskId == healthRisk.Id))
+                                projectHealthRisk => projectHealthRisk.Id == healthRisk.Id))
                         .Select(v => new
                         {
                             HealthRiskId = v.Id,
                             v.Name,
-                            project.HealthRisks.First(x => x.HealthRiskId == v.Id).Threshold
+                            project.HealthRisks.First(x => x.Id == v.Id).Threshold
                         })
                 );
             }
@@ -66,10 +66,10 @@ namespace Web
 
             if (project != null)
             {
-                var projectHealthRisk = project.HealthRisks.FirstOrDefault(v => v.HealthRiskId == healthRiskId);
+                var projectHealthRisk = project.HealthRisks.FirstOrDefault(v => v.Id == healthRiskId);
                 if (projectHealthRisk != null)
                 {
-                    var healthRisk = _healthRisks.GetById(projectHealthRisk.HealthRiskId);
+                    var healthRisk = _healthRisks.GetById(projectHealthRisk.Id);
                     return Ok(
                         new
                         {
