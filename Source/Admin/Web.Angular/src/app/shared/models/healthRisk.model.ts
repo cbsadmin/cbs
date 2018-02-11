@@ -4,4 +4,5 @@ export class HealthRisk {
     caseDefinition: string;
     threshold?: number;
     message: string;
+    action: string;
 }

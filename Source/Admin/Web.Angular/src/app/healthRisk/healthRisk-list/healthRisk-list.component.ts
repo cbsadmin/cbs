@@ -21,9 +21,6 @@ export class HealthRiskListComponent implements OnInit {
             (error) => { console.log(error); });
     }
 
-    async editHealthRisk(risk) {
-    }
-
     async deleteHealthRisk(risk){
     }
 }

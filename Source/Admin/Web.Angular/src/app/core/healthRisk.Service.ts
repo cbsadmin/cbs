@@ -9,15 +9,18 @@ export class HealthRiskService {
 
     constructor(private apiService: ApiService) { }
 
-    saveHealthRisk(item: HealthRisk): Observable<void> {
-        let risk = new HealthRisk();
-        risk = item; // Simple assignment, will probably handle values differently later
-
-        return this.apiService.post('/api/healthRisk', risk);
-    }
-
     getHealthRisks(): Observable<Array<HealthRisk>> {
         return this.apiService
             .get('/api/healthRisk');
+    }
+
+    getHealthRisk(id: string): Observable<HealthRisk>{
+        return this.apiService
+            .get('/api/healthRisk/'+id);
+    }
+    
+    saveHealthRisk(item: HealthRisk): Observable<void> {
+        return this.apiService
+            .post('/api/healthRisk', item);
     }
 }

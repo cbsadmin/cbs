@@ -17,8 +17,8 @@ const routes: Routes = [
         pathMatch: 'full'
     },
     {
-        path:'',
-        redirectTo:'healthrisk',
+        path:'healthrisk',
+        redirectTo: 'healthrisk',
         pathMatch:'full',
     }
 ];

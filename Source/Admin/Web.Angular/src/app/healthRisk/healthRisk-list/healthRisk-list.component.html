@@ -23,7 +23,7 @@
             <td>{{ risk.AlertThreshold }}</td>
             <td>{{ risk.Messages }}</td>
             <td>
-                <a ng-click="editHealthRisk(risk)">Edit</a> | <a ng-click="deleteHealthRisk(risk)">Delete</a>
+                <a routerLink="update" >Edit</a> | <a ng-click="deleteHealthRisk(risk)">Delete</a>
             </td>
         </tr>
     </tbody>

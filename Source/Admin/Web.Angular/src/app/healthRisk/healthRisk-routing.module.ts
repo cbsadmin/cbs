@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HealthRiskListComponent } from './healthRisk-list/healthRisk-list.component';
-import { AddHealthRiskComponent } from './add-healthRisk/add-healthRisk.component';
+import { AddEditHealthRiskComponent } from './add-edit-healthRisk/add-edit-healthRisk.component';
 
 const routes: Routes = [
     {
@@ -14,7 +14,11 @@ const routes: Routes = [
             },
             {
                 path: 'add',
-                component: AddHealthRiskComponent
+                component: AddEditHealthRiskComponent
+            },
+            {
+                path: ':id/update',
+                component: AddEditHealthRiskComponent
             },
         ]
     }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using Read.HealthRiskFeatures;
+using System;
 
 namespace Web
 {
@@ -28,6 +29,20 @@ namespace Web
         public async Task<IEnumerable<HealthRisk>> Get()
         {
             return await _healthRisks.GetAllAsync();
+        }
+
+        [HttpGet("{id}")]
+        public HealthRisk Get(Guid id)
+        {
+            return _healthRisks.GetById(id);
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody]HealthRisk healthRisk)
+        {
+            _healthRisks.Save(healthRisk);
+
+            return Ok();
         }
     }
 }
