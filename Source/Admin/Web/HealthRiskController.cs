@@ -38,9 +38,27 @@ namespace Web
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]HealthRisk healthRisk)
+        [Route("addhealthrisk")]
+        public IActionResult AddHealthRisk([FromBody]HealthRisk healthRisk)
         {
-            _healthRisks.Save(healthRisk);
+            _healthRisks.SaveAsync(healthRisk);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] HealthRisk healthRisk)
+        {
+            _healthRisks.ReplaceAsync(healthRisk);
+
+            return Ok();
+        }
+
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            _healthRisks.RemoveAsync(id);
 
             return Ok();
         }

@@ -22,5 +22,8 @@ export class HealthRiskListComponent implements OnInit {
     }
 
     async deleteHealthRisk(risk){
+        this.healthRiskService.removeHealthRisk(risk.id)
+            .subscribe(() => console.log("Success"), 
+            (error) => {console.log(error);})
     }
 }

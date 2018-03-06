@@ -23,20 +23,42 @@ export class AddEditHealthRiskComponent implements OnInit {
         this.risk = new HealthRisk();
 
        var pathSections = this.router.url.split("/");
+
        if (pathSections.indexOf('update') > -1)
        {
+           this.isAdd = false;
            this.healthRiskService.getHealthRisk(pathSections[2])
-           .subscribe((result) => this.risk = result,
-                (error) => { console.log(error); });
+                .subscribe((result) => this.risk = result,
+                    (error) => { console.log(error); });
+       }
+       else
+       {
+           this.isAdd = true;
        }
     }
 
     async addEditHealthRisk() {
-      if(this.risk !== new HealthRisk())
-      {
-          this.healthRiskService.saveHealthRisk(this.risk)
-          .subscribe(() => //go to healthrisk page
-                (error) => {console.log(error); });
-      }
+        if(this.risk !== new HealthRisk())
+        {
+            if(this.isAdd){
+                this.addHealthRisk();
+            }
+            else
+            {
+                this.editHealthRisk();
+            }
+        }
     }
+
+    addHealthRisk(){
+        this.healthRiskService.saveHealthRisk(this.risk)
+            .subscribe(() => //go to healthrisk page
+                (error) => {console.log(error); });
+    };
+
+    editHealthRisk(){
+        this.healthRiskService.updateHealthRisk(this.risk)
+        .subscribe(() => //go to healthrisk page
+            (error) => {console.log(error); });
+    };
 }

@@ -16,11 +16,21 @@ export class HealthRiskService {
 
     getHealthRisk(id: string): Observable<HealthRisk>{
         return this.apiService
-            .get('/api/healthRisk/'+id);
+            .get('/api/healthRisk/'+ id);
     }
     
     saveHealthRisk(item: HealthRisk): Observable<void> {
         return this.apiService
-            .post('/api/healthRisk', item);
+            .post('/api/healthRisk/addhealthrisk', item);
+    }
+
+    updateHealthRisk(item: HealthRisk) : Observable<void>{
+        return this.apiService
+            .post('api/healthRisk', item);
+    }
+
+    removeHealthRisk(id: string): Observable<void>{
+        return this.apiService
+            .delete('api/healthRisk/'+ id);
     }
 }
